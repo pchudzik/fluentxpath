@@ -1,7 +1,7 @@
 package com.pchudzik.fluentxpath.api;
 
-import com.sun.istack.internal.Nullable;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.pchudzik.fluentxpath.api.XPathExpression.raw;
-import static com.pchudzik.fluentxpath.api.XPathExpression.xpathValue;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singleton;

@@ -3,7 +3,11 @@ plugins {
     id "groovy"
 }
 
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
 dependencies {
+    compile "com.google.code.findbugs:jsr305:3.0.2"
     testCompile "org.spockframework:spock-core:1.2-groovy-2.5"
 }
 

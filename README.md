@@ -1,9 +1,6 @@
-# TODO
-
-* add travisci configuration to have CI
-* release fist version
-
 # fluentXPath
+
+[![Build Status](https://travis-ci.org/pchudzik/fluentxpath.svg?branch=master)](https://travis-ci.org/pchudzik/fluentxpath)
 
 Allows to fluently build xpath expressions in java. When string concatenation or using string
 templates is troubling you when creating xpath expressions.
