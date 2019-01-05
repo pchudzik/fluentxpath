@@ -2,5 +2,13 @@ language: java
 jdk:
   - openjdk8
 
+env:
+  global:
+    - secure: WR3LqyqIpnoQ51X7Au9K5noe1CzZCP0ArPOvNWLR0bS8VhuSkPP8bkndKSCnV13kaCUHu1/C6p3gX3hKYSUju95IQiKY+EJi3guANVDDzKONtUlrIimixgD5mB207LvdogJP4zF6QSCXT6KyYfJHh371yKz0tTz1RDfW3PqLh2XDcU4qiLzf2pYn9+r43ibZKReUIg5xcGDgjYLnQtHL6m0E5t/QYbNJQpO/dMbSJX/5P1vF3IP6YCW10vrFJi3VCFUoFDhrrKaNfSRTDBgsUlXnU1GMAHUGfeqnQCSEeLu4UVd5lFzoM5PZCm4DLhyH0t/fdwwdgPUhSOwMn3j1qTNweg4i9Np7p8ecgxnAb3Tn1DR4LvgpKCw6rIHko3qXVH3LFiVR05KMYJEIMjM/VzwXp1eGVkJX66YNltxjDJUxAqXhbaGvARZ9OPWdc/k1xGqhNdc3TSbGWVWSsVCJ2TGNnrrXd2+Sm+WakGzjKRIDJX2GD7PgC7MmtY96er6Bk5DKjOYSj4d5qB9rKtVEQG1hxw+cFerl4h8o28slFWxHDgRFDLvWGrOWsKaNPblh5gr6rW67x9tw4lz8RXpCFwRoY/BI8rbKiO64vIAf4zOkG+ClVKJ8XWBA9qZ0AsmlP7z0IuYJ1+X1d2ZiDycuo46P9UeyziDVrmsjCmM7jdU=
+    - secure: BrvhyB6awEl1tIHYzpZBb22g+rz50ug6na6OWkG0Nd1D7q7PTjYNzrVAax0YSZ1jSMobQecmficEGiyO9PUXKBWYQTDWtrA3gM4ABE9s6bncOL9e05f/GrUkwvdfEzKH87w88wUcPODphoe6ZWM7MJk5oSFS4i8qBKVzyLvLQuLkZkAwhNTeHgL845fNkls4affJ3qJS1q74Y3NemI4DYeULD/Df9Px5j47+N0h4V5CPSDbQ7fvBCl7l1CNwV1ade6LSjxrA5YhTo8EJVPI2c1rHk+NosDbU9aWJKKaC+r9A20JRg79rV2wWeTFfnK+NEeIA+b/ALHBv7DBQ5tBo7K1M3Uav4slfVQxx7/9fKYXnTTxmc1yQc/AZdx6CcvnzADP9KwKgMnfg1wUuPbi80bkGG/EidB4o9oEU5cd06AN5uSpuLhLuQ8Xu2RSwy6porHCx+yfaA6cfX4nVIusAIhyuAB/4V0Li6z+jU6HjcbIINRdBQZlqb0lw5S5xF/gIymGjXp9aUNqjGqsrn5KDSZJDMIX7U8ihskI4PP1Qj/Ad1esBRgGEYBaqlMwzNcCMJnRqet9rawoB+X+JKXHcnlHSY0BaMPQaR5tedowOISE7kjEsAAbfPDVogrGfxnti0Tbapk3tzTg+YRXYjOEXRWNwIwG41N+EoCJoEyto0pg=
+
 script:
-  - ./gradlew clean check
+  - ./gradlew check
+
+after_success:
+  - "[[ $TRAVIS_BRANCH == \"master\" && $TRAVIS_PULL_REQUEST == \"false\" ]] && ./gradlew publish -x signMavenJavaPublication -DnexusUsername=\"$NEXUS_USERNAME\" -DnexusPassword=\"$NEXUS_PASSWORD\""

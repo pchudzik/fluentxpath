@@ -61,9 +61,25 @@ xpathOf()
 
 ## Usage
 
+### Releases
+
+**!!!NOT YET RELEASED!!!**
+
 Add maven dependency:
 
-```TODO```
+```
+<dependency>
+  <groupId>com.pchudzik</groupId>
+  <artifactId>fluentxpath</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+In gradle:
+
+```
+compile "com.pchudzik:fluentxpath:1.0.0"
+```
 
 Add static imports:
 
@@ -74,9 +90,34 @@ import static com.pchudzik.fluentxpath.api.XPathExpression.xpathValue
 
 Start building your xpaths.
 
-Snapshots can be downloaded from nexus snapshot repository:
+### Snapshots
 
-```TODO```
+Configure nexus snapshots repository:
+
+```
+<repositories>
+  <repository>
+    <id>sonatype-snapshots</id>
+    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+  </repository>
+</repositories>
+```
+
+Add dependency to fluentxpath
+
+```
+<dependency>
+  <groupId>com.pchudzik</groupId>
+  <artifactId>fluentxpath</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+</dependency>
+```
+
+In gradle:
+
+```
+compile "com.pchudzik:fluentxpath:1.0.0-SNAPSHOT"
+```
 
 ## Missing functions
 
@@ -103,6 +144,26 @@ xpathFn().greaterThan(
         xpathValue(4))
     .build();
 ``` 
+
+# Development
+
+## Application version
+
+Application is configured in [gradle.properties](gradle.properties) file and is managed manually.
+Remove -SNAPSHOT when releasing version and bump to next -SNAPSHOT version after release.
+
+## Deployment
+
+Snapshot are automatically deployed with every build on master branch (on
+[travis-ci](https://travis-ci.org/pchudzik/fluentxpath)). See [.travis.yml](.travis.yml) file for
+details.
+
+Releases are deployed manually from local machine using following incantation:
+
+```./gradlew clean publish closeRepository -DnexusUsername=secret -DnexusPassword=secret_password```
+
+After release go to [https://oss.sonatype.org/#stagingRepositories](oss.sonatype.org) and release
+repository.
 
 # Changelog
 
