@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/pchudzik/fluentxpath.svg?branch=master)](https://travis-ci.org/pchudzik/fluentxpath)
 
+## Introduction 
 Allows to fluently build xpath expressions in java. When string concatenation or using string
 templates is troubling you when creating xpath expressions.
 
@@ -10,6 +11,22 @@ it's nothing but syntactic sugar so you don't have to concatenate strings.
 
 If you are using groovy or kotlin or any other jvm language with string interpolation you should
 probably use string interpolation instead of this library.
+
+## Contents
+
+* [Introduction](#introduction)
+* [Contents](#contents)
+* [Sample](#sample)
+  * [Basic](#basic)
+  * [Samples](#samples)
+  * [Dynamic xpaths](#dynamic-xpaths)
+  * [Missing functions](#missing-functions)
+* [Usage](#usage)
+  * [Releases](#releases)
+  * [Snapshots](#snapshots)
+* [Development](#development)
+* [Changelog](#changelog)
+  * [1.0.0 - To be released](#100---)
 
 ## Sample
 
@@ -31,7 +48,7 @@ String builderCommentsLink = xpathOf()
     .build();
 ```
 
-### More
+### Samples
 
 * [src/main/java/com/pchudzik/fluentxpath/api/Demo.java](src/main/java/com/pchudzik/fluentxpath/api/Demo.java)
 * [src/test/groovy/com/pchudzik/fluentxpath/api/MSDNSamplesTest.groovy](src/test/groovy/com/pchudzik/fluentxpath/api/MSDNSamplesTest.groovy)
@@ -39,7 +56,7 @@ String builderCommentsLink = xpathOf()
 * [src/test/groovy/com/pchudzik/fluentxpath/api/XPathBuilderFunctionTest.groovy](src/test/groovy/com/pchudzik/fluentxpath/api/XPathBuilderFunctionTest.groovy)
 * [src/test/groovy/com/pchudzik/fluentxpath/api/XPathBuilderAxisTest.groovy](src/test/groovy/com/pchudzik/fluentxpath/api/XPathBuilderAxisTest.groovy)
 
-### Other
+### Dynamic xpaths
 
 You can dynamically build xpaths like with JPA's criteria builder adding conditions, loops, etc:
 ```
@@ -58,6 +75,31 @@ xpathOf()
     .build();
 ```
 
+### Missing functions
+
+1. Pull requests are welcome
+1. Implement it on your own:
+```
+private static class XPathCount implements XPathExpression {
+    private final XPathExpression expression;
+
+    private XPathCount(XPathExpression expression) {
+        this.expression = expression;
+    }
+
+    @Override
+    public String build() {
+        return "count((" +
+                expression.build() +
+                "))";
+    }
+}
+
+xpathFn().greaterThan(
+        new XPathCount(xpathOf().anyElement("a").has(xpathFn().contains(xpathAttribute("class"), xpathValue("links")))),
+        xpathValue(4))
+    .build();
+```
 
 ## Usage
 
@@ -117,42 +159,16 @@ In gradle:
 
 ```
 compile "com.pchudzik:fluentxpath:1.0.0-SNAPSHOT"
-```
-
-## Missing functions
-
-1. Pull requests are welcome
-1. Implement it on your own:
-```
-private static class XPathCount implements XPathExpression {
-    private final XPathExpression expression;
-
-    private XPathCount(XPathExpression expression) {
-        this.expression = expression;
-    }
-
-    @Override
-    public String build() {
-        return "count((" +
-                expression.build() +
-                "))";
-    }
-}
-
-xpathFn().greaterThan(
-        new XPathCount(xpathOf().anyElement("a").has(xpathFn().contains(xpathAttribute("class"), xpathValue("links")))),
-        xpathValue(4))
-    .build();
 ``` 
 
-# Development
+## Development
 
-## Application version
+### Application version
 
-Application is configured in [gradle.properties](gradle.properties) file and is managed manually.
-Remove -SNAPSHOT when releasing version and bump to next -SNAPSHOT version after release.
+Application version is configured in [gradle.properties](gradle.properties) file and is managed
+manually. Remove -SNAPSHOT when releasing version and bump to next -SNAPSHOT version after release.
 
-## Deployment
+### Deployment
 
 Snapshot are automatically deployed with every build on master branch (on
 [travis-ci](https://travis-ci.org/pchudzik/fluentxpath)). See [.travis.yml](.travis.yml) file for
@@ -165,6 +181,7 @@ Releases are deployed manually from local machine using following incantation:
 After release go to [https://oss.sonatype.org/#stagingRepositories](oss.sonatype.org) and release
 repository.
 
-# Changelog
+## Changelog
 
+### 1.0.0 - ???
 * 1.0.0 - ????? - First released version
