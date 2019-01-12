@@ -1,6 +1,5 @@
 package com.pchudzik.fluentxpath.api;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,7 +11,7 @@ import static java.util.Arrays.asList;
 class Demo {
     public static void main(String[] args) {
         String articleId = "1234";
-        Stream<String> newArticleIds = Stream.of("1","2","3","4");
+        Stream<String> newArticleIds = Stream.of("1", "2", "3", "4");
         String articleCategory = "News";
         String articleCommentsLinkText = "comments";
 

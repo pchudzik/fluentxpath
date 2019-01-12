@@ -26,7 +26,7 @@ probably use string interpolation instead of this library.
   * [Snapshots](#snapshots)
 * [Development](#development)
 * [Changelog](#changelog)
-  * [1.0.0 - To be released](#100---)
+  * [1.0.0 - 12.01.2019](#100---12012019)
 
 ## Sample
 
@@ -105,8 +105,6 @@ xpathFn().greaterThan(
 
 ### Releases
 
-**!!!NOT YET RELEASED!!!**
-
 Add maven dependency:
 
 ```
@@ -151,14 +149,14 @@ Add dependency to fluentxpath
 <dependency>
   <groupId>com.pchudzik</groupId>
   <artifactId>fluentxpath</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.1-SNAPSHOT</version>
 </dependency>
 ```
 
 In gradle:
 
 ```
-compile "com.pchudzik:fluentxpath:1.0.0-SNAPSHOT"
+compile "com.pchudzik:fluentxpath:1.0.1-SNAPSHOT"
 ``` 
 
 ## Development
@@ -183,5 +181,6 @@ repository.
 
 ## Changelog
 
-### 1.0.0 - ???
-* 1.0.0 - ????? - First released version
+### 1.0.0 - 12.01.2019
+
+* 1.0.0 - 12.01.2019 - First released version
